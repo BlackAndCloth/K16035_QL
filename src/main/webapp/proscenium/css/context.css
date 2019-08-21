@@ -1,0 +1,254 @@
+/*
+			 * 点餐列表
+			 */
+
+#middle_index {
+	margin-top: 10px;
+}
+
+#middle_left {
+	float: left;
+	border-top: 1px solid orangered;
+	border-bottom: solid #808080 1px;
+	border-right: solid orange 1px;
+	border-left: 1px solid orange;
+	border-radius: calc(10px);
+	width: 640px;
+	height: 600px;
+	padding: 10px;
+}
+
+.context {
+	width: 320px;
+	height: 195px;
+	float: left;
+}
+
+.context_top {
+	float: left;
+}
+
+.context_img {
+	float: left;
+}
+
+.context_img img {
+	border: 1px solid black;
+}
+
+.context_font {
+	margin-left: 170px;
+	font-family: "微软雅黑";
+	font-size: small;
+}
+
+.context_font font {
+	color: red;
+}
+
+.context_button {
+	float: left;
+}
+
+.context_button img {
+	margin-left: 20px;
+}
+
+
+/*
+			 * 餐厅公告
+			 */
+/*#pin{*/
+	/*overflow: scroll;*/
+/*height: 100px;*/
+	/*width: 232px;*/
+/*}*/
+#middle_right {
+	float: right;
+	height: 600px;
+	width: 235px;
+}
+
+#announcement {
+	background: url(../img/bg.jpg);
+	border: 1px solid orange;
+	border-radius: calc(10px);
+}
+
+#announcement ul {
+	list-style-image: url(../img/43.gif);
+	display: inline;
+	list-style-type: none;
+}
+
+#announcement ul li {
+	line-height: 20px;
+	margin-left: 20px;
+	font-size: smaller;
+}
+
+#announcement ul li font {
+	color: gray;
+}
+
+#announcement ul li a {
+	color: black;
+	text-decoration: none;
+}
+a{
+	color: black;
+	text-decoration: none;
+}
+a:hover{
+	color: red;
+	text-decoration: underline;
+}
+#announcement ul li a:hover {
+	color: red;
+	text-decoration: underline;
+}
+
+#announcement_title {
+	margin-top: 10px;
+	margin-left: 50px;
+	color: orange;
+	font-family: "黑体";
+	font-size: larger;
+}
+
+#announcement_title a {
+	margin-left: 50px;
+	font-family: "微软雅黑";
+	font-size: 4px;
+	color: black;
+	text-decoration: none;
+}
+
+#announcement_title a:hover {
+	text-decoration: underline;
+}
+
+/*
+			 * 我的餐车
+			 */
+
+#diner {
+	margin-top: 20px;
+	background: url(../img/dingcanche.jpg);
+	border: 1px solid orange;
+	border-radius: calc(10px);
+}
+
+#diner_title {
+	margin-top: 10px;
+	margin-left: 50px;
+	color: orange;
+	font-family: "黑体";
+	font-size: larger;
+}
+
+#diner_title a {
+	margin-left: 50px;
+	font-family: "微软雅黑";
+	font-size: 4px;
+	color: black;
+	text-decoration: none;
+}
+
+#diner_title a:hover {
+	text-decoration: underline;
+}
+
+#diner_context_head {
+	background-color: pink;
+	font-family: "微软雅黑";
+	font-size: small;
+}
+
+#diner_context_foot {
+	font-family: "微软雅黑";
+	font-size: small;
+
+}
+
+#limit{
+	height: 160px;
+	overflow: scroll;
+}
+#diner_context_foot font {
+	color: red;
+}
+#diner_context_foot span {
+	color: red;
+}
+
+#diner_context_button {
+	margin-left: 90px;
+}
+
+
+/*
+			 * 销售排行榜
+			 */
+
+#sell {
+	margin-top: 20px;
+	background: url(../img/dingcanweekmenu.jpg);
+	border: 1px solid orange;
+	border-radius: calc(10px);
+}
+
+#sell ol {
+	list-style-image: url(../img/43.gif);
+	display: inline;
+	list-style-type: none;
+}
+
+#sell_title {
+	margin-top: 10px;
+	margin-left: 50px;
+	color: orange;
+	font-family: "黑体";
+	font-size: larger;
+}
+
+#sell ul li {
+	line-height: 20px;
+	margin-left: 20px;
+	font-size: smaller;
+}
+
+#sell ul li font {
+	color: gray;
+	margin-left: 60px
+}
+
+#sell ul li a {
+	color: black;
+	text-decoration: none;
+}
+
+#sell ul li a:hover {
+	color: red;
+	text-decoration: underline;
+}
+
+#sell_title {
+	margin-top: 10px;
+	margin-left: 50px;
+	color: orange;
+	font-family: "黑体";
+	font-size: larger;
+}
+
+#sell_title a {
+	margin-left: 30px;
+	font-family: "微软雅黑";
+	font-size: 4px;
+	color: black;
+	text-decoration: none;
+}
+
+#sell_title a:hover {
+	text-decoration: underline;
+}

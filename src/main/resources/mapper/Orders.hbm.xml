@@ -1,0 +1,15 @@
+<?xml  version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.whpu.k160345.entity">
+    <class name="com.whpu.k160345.entity.Orders" table="orders">
+        <id name="id" column="id" type="java.lang.Integer" length="4">
+            <generator class="native" />
+        </id>
+        <property name="dishesSum" column="dishesSum" type="java.lang.String" length="50" />
+        <property name="dateTime" column="dateTime" type="java.sql.Date" length="50" />
+        <property name="delivery" column="delivery" type="java.lang.String" length="50" />
+        <many-to-one name="user" column="userId" class="com.whpu.k160345.entity.User" lazy="false" />
+        <many-to-one name="dishes" column="dishesId" class="com.whpu.k160345.entity.Dishes" lazy="false" />
+    </class>
+</hibernate-mapping>

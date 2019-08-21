@@ -1,0 +1,22 @@
+package com.whpu.k160345.dao;
+
+import com.whpu.k160345.entity.Dishes;
+import com.whpu.k160345.entity.Types;
+
+import java.util.List;
+
+public interface DishesDao {
+   public List<Dishes> selectDishesAll(Integer page);
+
+   public void insertDishes(Dishes dishes);
+
+   public Dishes selectDishesById(Integer id);
+
+   public void updateDishes(Dishes dishes);
+
+   public void deleteDishesById(Integer id);
+
+   public Long selectPageSum();
+
+   public List<Types> selectTypeList();
+}

@@ -1,0 +1,85 @@
+#middle_login {
+	padding-top: 50px;
+}
+
+#login_background {
+	border: 1px solid orangered;
+	background-color: antiquewhite;
+	width: 600px;
+	height: 300px;
+	margin: auto;
+	border-radius: calc(10px);
+}
+
+#login_input {
+	float: left;
+	border: 1px solid orangered;
+	border-radius: calc(10px);
+	background-color: beige;
+	width: 250px;
+	height: 150px;
+	margin-top: 50px;
+	margin-left: 20px;
+}
+
+#login_input div {
+	margin-top: 20px;
+	margin-left: 20px;
+	font-family: "微软雅黑";
+	font-size: 10px;
+}
+
+.input input {
+	border-width: 0px;
+	border: 1px solid gainsboro;
+}
+
+#submit {
+	background-image: url(../img/denglu.gif);
+	width: 40px;
+	height: 19px;
+	border-width: 0px;
+}
+
+#login_title {
+	float: right;
+	border: 1px solid orangered;
+	border-radius: calc(10px);
+	background-color: beige;
+	width: 300px;
+	height: 150px;
+	margin-top: 50px;
+	margin-right: 20px;
+	font-family: "微软雅黑";
+	font-size: small;
+}
+
+#login_title ul {
+	margin-top: 20px;
+	list-style-image: url(../img/cateitems.gif);
+	margin-left: 30px;
+}
+
+#login_title li {
+	line-height: 30px;
+}
+
+#register {
+	text-decoration: none;
+	color: orangered;
+}
+
+#register:hover {
+	text-decoration: underline;
+	color: red;
+}
+
+#resetpassword {
+	text-decoration: none;
+	color: forestgreen;
+}
+
+#resetpassword:hover {
+	text-decoration: underline;
+	color: green;
+}

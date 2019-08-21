@@ -1,0 +1,17 @@
+#middle_aboutUs {
+	margin-top: 10px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	margin-left: 40px;
+	margin-right: 40px;
+}
+
+#middle_aboutUs a {
+	text-decoration: none;
+	color: black;
+}
+
+#middle_aboutUs a:hover {
+	text-decoration: underline;
+	color: red;
+}

@@ -1,0 +1,36 @@
+#middle_userCenter {
+	margin-top: 20px;
+}
+
+#middle_userCenter table {
+	margin: 0 auto;
+	text-align: center;
+	border-radius: calc(5px);
+	font-family: "微软雅黑";
+	font-size: 14px;
+	line-height: 30px;
+}
+
+.left {
+	width: 100px;
+	text-align: right;
+}
+
+.center {
+	width: 160px;
+	text-align: center;
+}
+
+.right {
+	width: 460px;
+	text-align: left;
+}
+
+#middle_userCenter table font {
+	color: red;
+}
+
+#middle_userCenter input {
+	border-width: 0;
+	border: 1px solid gainsboro;
+}

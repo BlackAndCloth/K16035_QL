@@ -1,0 +1,78 @@
+<?xml  version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <!--常亮-->
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+
+    <package name="manage" namespace="/manage" extends="struts-default">
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+
+        <action name="adminActionM" class="com.whpu.k160345.action.AdminAction">
+            <result name="success">/manage/manage.jsp</result>
+            <result name="update" type="redirect">/manage/adminActionM!adminOut.action</result>
+            <result name="out" type="redirect">/manage/index.jsp</result>
+        </action>
+        <action name="dishesActionM" class="com.whpu.k160345.action.DishesAction">
+            <result name="list">/manage/dishe_list.jsp</result>
+            <result name="null" type="redirect">/index.jsp</result>
+            <result name="updateDishes">/manage/dishe_update.jsp</result>
+            <result name="insertPage">/manage/dishe_save.jsp</result>
+            <result name="requert" type="redirect">/manage/dishesActionM!selectDishesAll.action?page=1</result>
+        </action>
+        <action name="typesActionM" class="com.whpu.k160345.action.TypesAction">
+            <result name="list">/manage/type_list.jsp</result>
+            <result name="updateType">/manage/type_update.jsp</result>
+            <result name="requert" type="redirect">/manage/typesActionM!selectTypesAll.action?page=1</result>
+        </action>
+        <action name="noticeActionM" class="com.whpu.k160345.action.NoticeAction">
+            <result name="list">/manage/notice_list.jsp</result>
+            <result name="updateNotice">/manage/notice_update.jsp</result>
+            <result name="requert" type="redirect">/manage/noticeActionM!selectNoticeAll.action?page=1</result>
+        </action>
+        <action name="ordersActionM" class="com.whpu.k160345.action.OrdersAction">
+            <result name="list">/manage/order_list.jsp</result>
+            <result name="selectPage">/manage/order_search.jsp</result>
+            <result name="searchList">/manage/order_search.jsp</result>
+            <result name="todayList">/manage/order_today.jsp</result>
+            <result name="requert" type="redirect">/manage/ordersActionM!selectOrdersAll.action?page=1</result>
+            <result name="goToSelectPage" type="redirect">/manage/ordersActionM!selectOrdersPage.action?page=1</result>
+        </action>
+    </package>
+    <package name="proscenium" namespace="/proscenium" extends="struts-default">
+        <!--允许访问方法-->
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+        <action name="dishesAction" class="com.whpu.k16035.action.DishesAction">
+            <result name="show">/proscenium/show.jsp</result>
+            <result name="index">/proscenium/index.jsp</result>
+        </action>
+        <action name="noticeAction" class="com.whpu.k16035.action.NoticeAction">
+            <result name="list">/proscenium/index.jsp</result>
+            <result name="showNotice">/proscenium/notice.jsp</result>
+            <result name="showNoticeOfList">/proscenium/noticeOfList.jsp</result>
+            <result name="showNoticeAll">/proscenium/noticeList.jsp</result>
+        </action>
+        <action name="indexAction" class="com.whpu.k16035.action.IndexAction">
+            <result name="index">/proscenium/index.jsp</result>
+        </action>
+        <action name="userAction" class="com.whpu.k16035.action.UserAction">
+            <result name="register_success">/proscenium/login.jsp</result>
+            <result name="register_fail">/proscenium/userCenter.jsp</result>
+
+            <result name="login_success" type="redirect">/proscenium/indexAction!index.action</result>
+
+            <result name="login_fail">/proscenium/login.jsp</result>
+        </action>
+        <action name="ordersAction" class="com.whpu.k16035.action.OrdersAction">
+            <result name="requert" type="redirect">/proscenium/indexAction!index.action?dishesPage=${dishesPage}</result>
+            <result name="requert2" type="redirect">/proscenium/diner.jsp</result>
+            <result name="list">/proscenium/order.jsp</result>
+            <result name="add_success" type="redirect">/proscenium/ordersAction!getOrdersAllByUserId.action</result>
+        </action>
+    </package>
+
+</struts>

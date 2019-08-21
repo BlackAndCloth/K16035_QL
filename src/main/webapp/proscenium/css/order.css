@@ -1,0 +1,29 @@
+#middle_order {
+	margin-top: 10px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+
+#middle_order table {
+	margin: 0 auto;
+	text-align: center;
+	border-radius: calc(5px);
+}
+
+#middle_order a {
+	text-decoration: none;
+	color: black;
+}
+
+#middle_order a:hover {
+	text-decoration: underline;
+	color: red;
+}
+
+#middle_order td {
+	height: 30px;
+}
+
+#list_title td {
+	width: 80px;
+}

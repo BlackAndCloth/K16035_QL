@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--1.加载连库四要素-->
+    <context:property-placeholder location="classpath:dbconfig/dbmysql.properties" />
+    <!--2.创建数据库连接池-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+    <!--创建sessionFactroy-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <!--数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--加载hibernate主配置文件-->
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+        <!--加载实体类映射文件-->
+        <property name="mappingLocations" value="classpath*:mapper/*.hbm.xml"/>
+        <!--hibernate的其他配置-->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="show_sql">true</prop>
+                <prop key="format_sql">true</prop>
+                <prop key="hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--事物管理-->
+        <!--事物管理器-->
+    <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <!--事物传播特性-->
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="*"/>
+            <!--select*  方法设置只-->
+            <tx:method name="select*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+    <!--事物切面-->
+    <aop:config>
+        <aop:pointcut id="pointcut" expression="execution(* com.whpu.k160345.service.impl.*.*(..))"></aop:pointcut>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
+    </aop:config>
+
+    <!--dao层-->
+    <bean id="adminDaoM" class="com.whpu.k160345.dao.impl.AdminDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="dishesDaoM" class="com.whpu.k160345.dao.impl.DishesDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="typesDaoM" class="com.whpu.k160345.dao.impl.TypesDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="noticeDaoM" class="com.whpu.k160345.dao.impl.NoticeDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="ordersDaoM" class="com.whpu.k160345.dao.impl.OrdersDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="userDaoM" class="com.whpu.k160345.dao.impl.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--服务层-->
+    <bean id="adminServiceM" class="com.whpu.k160345.service.impl.AdminServiceImpl">
+        <property name="adminDao" ref="adminDaoM"/>
+    </bean>
+    <bean id="dishesServiceM" class="com.whpu.k160345.service.impl.DishesServiceImpl">
+        <property name="dishesDao" ref="dishesDaoM"/>
+    </bean>
+    <bean id="typesServiceM" class="com.whpu.k160345.service.impl.TypesServiceImpl">
+        <property name="typesDao" ref="typesDaoM"/>
+    </bean>
+    <bean id="noticeServiceM" class="com.whpu.k160345.service.impl.NoticeServiceImpl">
+        <property name="noticeDao" ref="noticeDaoM"/>
+    </bean>
+    <bean id="ordersServiceM" class="com.whpu.k160345.service.impl.OrdersServiceImpl">
+        <property name="ordersDao" ref="ordersDaoM"/>
+    </bean>
+    <bean id="userServiceM" class="com.whpu.k160345.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDaoM"/>
+    </bean>
+    <!--控制器-->
+    <bean id="adminActionM" class="com.whpu.k160345.action.AdminAction" scope="prototype">
+        <property name="adminServiceM" ref="adminServiceM"/>
+    </bean>
+    <bean id="dishesActionM" class="com.whpu.k160345.action.DishesAction" scope="prototype">
+        <property name="dishesServiceM" ref="dishesServiceM"/>
+    </bean>
+    <bean id="typesActionM" class="com.whpu.k160345.action.TypesAction" scope="prototype">
+        <property name="typesServiceM" ref="typesServiceM"/>
+    </bean>
+    <bean id="noticeActionM" class="com.whpu.k160345.action.NoticeAction" scope="prototype">
+        <property name="noticeServiceM" ref="noticeServiceM"/>
+    </bean>
+    <bean id="ordersActionM" class="com.whpu.k160345.action.OrdersAction" scope="prototype">
+        <property name="ordersServiceM" ref="ordersServiceM"/>
+    </bean>
+    <bean id="userActionM" class="com.whpu.k160345.action.UserAction" scope="prototype">
+        <property name="userServiceM" ref="userServiceM"/>
+    </bean>
+    <aop:config proxy-target-class="true">
+        <aop:pointcut id="pointcut1" expression="execution(* com.whpu.k16035.service.impl.*.*(..))"></aop:pointcut>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut1"/>
+    </aop:config>
+    <!--DAO层-->
+    <bean id="dishesDao" class="com.whpu.k16035.dao.impl.DishesDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--服务层-->
+    <bean id="dishesService" class="com.whpu.k16035.service.impl.DishesServiceImpl">
+        <property name="dishesDao" ref="dishesDao"/>
+    </bean>
+    <!--控制层-->
+    <bean id="dishesAction" class="com.whpu.k16035.action.DishesAction" scope="prototype">
+        <property name="dishesService" ref="dishesService"/>
+    </bean>
+    <!--DAO层-->
+    <bean id="noticeDao" class="com.whpu.k16035.dao.impl.NoticeDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--服务层-->
+    <bean id="noticeService" class="com.whpu.k16035.service.impl.NoticeServiceImpl">
+        <property name="noticeDao" ref="noticeDao"/>
+    </bean>
+    <!--控制层-->
+    <bean id="noticeAction" class="com.whpu.k16035.action.NoticeAction" scope="prototype">
+        <property name="noticeService" ref="noticeService"/>
+    </bean>
+
+    <!--DAO层-->
+    <bean id="userDao" class="com.whpu.k16035.dao.impl.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--服务层-->
+    <bean id="userService" class="com.whpu.k16035.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+    <!--控制层-->
+    <bean id="userAction" class="com.whpu.k16035.action.UserAction" scope="prototype">
+        <property name="userService" ref="userService"/>
+    </bean>
+    <bean id="indexAction" class="com.whpu.k16035.action.IndexAction" scope="prototype"></bean>
+    <!--DAO层-->
+    <bean id="ordersDao" class="com.whpu.k16035.dao.impl.OrdersDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!--服务层-->
+    <bean id="ordersService" class="com.whpu.k16035.service.impl.OrdersServiceImpl">
+        <property name="ordersDao" ref="ordersDao"/>
+    </bean>
+    <!--控制层-->
+    <bean id="ordersAction" class="com.whpu.k16035.action.OrdersAction" scope="prototype">
+        <property name="ordersService" ref="ordersService"/>
+    </bean>
+</beans>

@@ -1,0 +1,17 @@
+#middle_notice {
+	margin-top: 10px;
+	font-family: "微软雅黑";
+	font-size: 18px;
+	margin-left: 40px;
+	margin-right: 40px;
+}
+
+#middle_notice a {
+	text-decoration: none;
+	color: black;
+}
+
+#middle_notice a:hover {
+	text-decoration: underline;
+	color: red;
+}

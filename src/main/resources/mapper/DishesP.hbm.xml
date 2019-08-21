@@ -1,0 +1,40 @@
+<?xml  version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--packbage：实体类包名-->
+<hibernate-mapping package="com.whpu.k16035.entity">
+    <!--name 实体类名称-->
+    <!--table 表名-->
+    <class name="com.whpu.k16035.entity.Dishe" table="dishes">
+    <!--
+        id:配置表的主键
+            name:实体类中的属性
+            column:表中的主键名称
+   -->
+        <id name="id" column="id" type="java.lang.Integer">
+            <!--
+                generator:主键生成策略
+                    native : 数据库自己管理
+            -->
+            <generator class="native" />
+        </id>
+        <!--
+            property: 配置其他属性
+                name:实体类属性的名字
+                colum:表中字段的名称
+                type:数据类型
+                length:数据类型的长度
+        -->
+        <property name="name" column="name" type="java.lang.String" length="64"/>
+        <property name="recipe" column="recipe" type="java.lang.String" length="64"/>
+        <property name="brief" column="brief"  type="java.lang.String" length="64"/>
+        <property name="price" column="price"  type="java.lang.String" length="64"/>
+        <property name="sums" column="sums"  type="java.lang.String" length="64"/>
+        <property name="priceAssociator" column="priceAssociator"  type="java.lang.String" length="64"/>
+        <property name="sumsAssociator" column="sumsAssociator"  type="java.lang.String" length="64"/>
+        <property name="imgpath" column="imgpath"  type="java.lang.String" length="64"/>
+        <!--lazy="false"    不使用懒加载-->
+        <many-to-one name="types" column="typeId" class="com.whpu.k16035.entity.Types" lazy="false"/>
+    </class>
+
+</hibernate-mapping>

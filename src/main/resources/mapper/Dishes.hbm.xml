@@ -1,0 +1,24 @@
+<?xml  version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.whpu.k160345.entity">
+    <class name="com.whpu.k160345.entity.Dishes" table="dishes">
+        <id name="id" column="id" type="java.lang.Integer" length="4">
+            <generator class="native" />
+        </id>
+        <property name="name" column="name" type="java.lang.String" length="50"/>
+        <property name="recipe" column="recipe" type="java.lang.String" length="100" />
+        <property name="brief" column="brief" type="java.lang.String" length="500" />
+        <property name="price" column="price" type="java.lang.String" length="50"/>
+        <property name="sums" column="sums" type="java.lang.String" length="50" />
+        <property name="priceAssociator" column="priceAssociator" type="java.lang.String" length="50"/>
+        <property name="sumsAssociator" column="sumsAssociator" type="java.lang.String" length="50" />
+        <property name="imgpath" column="imgpath" type="java.lang.String" length="50" />
+
+        <many-to-one name="types" column="typeId" class="com.whpu.k160345.entity.Types" lazy="false"/>
+        <set name="ordersList">
+            <key column="dishesId"></key>
+            <one-to-many class="com.whpu.k160345.entity.Orders"></one-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

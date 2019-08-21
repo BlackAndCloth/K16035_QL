@@ -1,0 +1,43 @@
+<?xml  version="1.0" encoding="UTF-8"  ?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--packbage：实体类包名-->
+<hibernate-mapping package="com.whpu.k16035.entity">
+    <!--name 实体类名称-->
+    <!--table 表名-->
+    <class name="com.whpu.k16035.entity.Order" table="orders">
+    <!--
+        id:配置表的主键
+            name:实体类中的属性
+            column:表中的主键名称
+   -->
+        <id name="id" column="id" type="java.lang.Integer">
+            <!--
+                generator:主键生成策略
+                    native : 数据库自己管理
+            -->
+            <generator class="native" />
+        </id>
+
+        <!--//创建与表对应的属性-->
+        <!--private Integer id;-->
+        <!--//下单者-->
+        <!--private Users orderUser;-->
+        <!--//对应菜品-->
+        <!--private Dishes orderIdshes;-->
+        <!--//订购数量-->
+        <!--private Integer dishesSum;-->
+        <!--//订单时间-->
+        <!--private Date dateTime;-->
+        <!--//订单状态-->
+        <!--private Integer delivery;-->
+        <property name="dishesSum" column="dishesSum" type="java.lang.Integer"/>
+        <property name="dateTime" column="dateTime" type="java.sql.Date" length="64"/>
+        <property name="delivery" column="delivery" type="java.lang.Integer"/>
+        <!--多对一关系-->
+        <many-to-one name="oderDishes" class="Dishe" column="dishesId" lazy="false"/>
+        <many-to-one name="orderUser" class="Users" column="userId" lazy="false"/>
+
+    </class>
+
+</hibernate-mapping>
